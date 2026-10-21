@@ -44,7 +44,7 @@ const navLinks = [
                         href="#entrar"
                         class="rounded-full bg-brand-gold px-[18px] py-2.5 text-[15px] font-bold text-brand-ink hover:bg-brand-gold-hover hover:text-brand-ink"
                     >
-                        Quero entrar
+                        Quem topa?
                     </a>
                     <Link
                         v-if="$page.props.auth.user"
@@ -53,7 +53,6 @@ const navLinks = [
                     >
                         Painel
                     </Link>
-                    <Link v-else :href="route('login')" class="text-[15px] font-medium text-brand-muted-3 hover:text-brand-cream"> Entrar </Link>
                 </nav>
 
                 <button class="rounded-full border border-brand-line3 p-2 text-brand-cream lg:hidden" type="button" @click="menuOpen = !menuOpen">
@@ -77,10 +76,9 @@ const navLinks = [
                     class="inline-flex w-fit rounded-full bg-brand-gold px-[18px] py-2.5 text-[15px] font-bold text-brand-ink"
                     @click="menuOpen = false"
                 >
-                    Quero entrar
+                    Quem topa?
                 </a>
                 <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-[15px] font-medium text-brand-muted-3"> Painel </Link>
-                <Link v-else :href="route('login')" class="text-[15px] font-medium text-brand-muted-3"> Entrar </Link>
             </nav>
         </header>
 
@@ -107,7 +105,7 @@ const navLinks = [
                         rel="noopener"
                         class="inline-flex items-center gap-2.5 rounded-full bg-brand-gold px-7 py-4 text-[17px] font-bold text-brand-ink hover:bg-brand-gold-hover hover:text-brand-ink"
                     >
-                        Quero entrar no desafio <span>→</span>
+                        Quem topa? <span>→</span>
                     </a>
                     <a
                         href="#regras"
@@ -179,11 +177,10 @@ const navLinks = [
             </div>
 
             <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,200px),1fr))] gap-4">
-                <a
+                <Link
                     v-for="goal in goals"
                     :key="goal.key"
-                    :id="`objetivo-${goal.key}`"
-                    :href="`#objetivo-${goal.key}`"
+                    :href="route('objetivos.show', goal.key)"
                     class="flex flex-col gap-4 rounded-[22px] border-2 border-brand-line2 bg-brand-card p-6 text-brand-cream transition hover:-translate-y-0.5 hover:border-brand-line3 hover:text-brand-cream"
                 >
                     <img :src="goal.icon" alt="" class="block size-[88px]" />
@@ -195,7 +192,7 @@ const navLinks = [
                     <span class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider" :style="{ color: goal.color }">
                         <span>Ver regra e dicas</span><span>→</span>
                     </span>
-                </a>
+                </Link>
             </div>
         </section>
 
@@ -544,13 +541,6 @@ const navLinks = [
                     >
                         Seguir @desafio60.firme
                     </a>
-                    <Link
-                        v-if="!$page.props.auth.user"
-                        :href="route('register')"
-                        class="rounded-full border-[1.5px] border-brand-ink px-[30px] py-[18px] text-[17px] font-bold text-brand-ink hover:bg-brand-ink hover:text-brand-cream"
-                    >
-                        Criar conta
-                    </Link>
                 </div>
             </div>
         </section>

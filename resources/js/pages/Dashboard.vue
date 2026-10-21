@@ -3,7 +3,7 @@ import BrandArt from '@/components/brand/BrandArt.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { GOALS, useChallenge } from '@/composables/useChallenge';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -71,11 +71,11 @@ const { countdown, pushDay, pushReps, bars, milestones } = useChallenge();
             </div>
 
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-                <div v-for="goal in GOALS" :key="goal.key" class="surface-card flex flex-col gap-3 p-5">
+                <Link v-for="goal in GOALS" :key="goal.key" :href="route('objetivos.show', goal.key)" class="surface-card flex flex-col gap-3 p-5">
                     <img :src="goal.icon" alt="" class="size-14" />
                     <span class="font-display text-2xl font-extrabold leading-none" :style="{ color: goal.color }">{{ goal.metric }}</span>
                     <span class="font-display text-lg font-bold uppercase leading-tight">{{ goal.title }}</span>
-                </div>
+                </Link>
             </div>
 
             <div class="grid gap-3 md:grid-cols-5">
